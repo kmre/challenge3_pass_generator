@@ -4,14 +4,62 @@
 function generatePassword() {
 
   var password = "test4";
-  console.log(genPassword.passLenght);
+  console.log(passLength);
 
   return password; //Returns value to the writePassword fn for var password
 
 }
 
-//Input for length, lower case, upper case, number and special characters
+//Input for length
 
+
+//Check to see input is integer and between the allowed values
+var lenghtCheck = function(passLength) {
+  debugger;
+  //Prompts user for lenght and converts to Int
+  var askLength = prompt("Please enter how long you would like your password to be. Chose between 8-128 for the length.", "8");
+  var passLength = parseInt(askLength, 10);
+    //if they cancel input will be Nan and they will exit the fn
+    if (passLength !== NaN && askLength !== null) {
+      //if the number is int and not between the parameters set the user is alerted and told to try again
+      if (Number.isInteger(passLength)) {
+        console.log("pass");
+          if (passLength < 8 || passLength > 128) {
+            window.alert("The previous input was invalid. Please enter the correct parameters.");
+            lenghtCheck();
+          }
+          //if input is Int and meets the lenght criteria user is alerted and should ask for the next input
+          else{
+            window.alert("Great, we'll create a password with " + passLength + " characters.");
+            
+            
+            //fn to ask for next input
+
+
+          }
+      }
+      //if they enter a string they will be told to enter correct value
+      else{
+        console.log("fail");
+        window.alert("The previous input was invalid. Please enter the correct parameters.");
+        lenghtCheck();
+      } 
+    }
+    else {
+      window.alert("Operation has been cancelled. Come again!");
+    }
+}
+
+lenghtCheck();
+
+
+//Input for lower case
+
+//Input for upper case
+
+//Input for number
+
+//Input for special characters
 
 //Arrays or objects? for each of the selections
 
@@ -21,35 +69,35 @@ function generatePassword() {
 
 
 //Object for password's parameters
-var genPassword = {
-  passLenght: 8,
-  passLowerCase: true,
-  passUpperCase: true,
-  passNumber: true,
-  passSpecialChar: true
+// var genPassword = {
+//   passLenght: 8,
+//   passLowerCase: true,
+//   passUpperCase: true,
+//   passNumber: true,
+//   passSpecialChar: true
 
-};
-
-
-generatePassword(genPassword);
+// };
 
 
-///</Test>
-//////////////////////////////////////////////////////////////////
-/////////////////////Given Code///////////////////////////////////
-////////////////////////////////////////////////////////////////
+// generatePassword(genPassword);
 
-// Get references to the #generate element = button on html
-var generateBtn = document.querySelector("#generate"); 
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword(); //Runs fn generatePassword
-  var passwordText = document.querySelector("#password"); //pases passwordText.value to the text area in HTML
+// ///</Test>
+// //////////////////////////////////////////////////////////////////
+// /////////////////////Given Code///////////////////////////////////
+// ////////////////////////////////////////////////////////////////
 
-  passwordText.value = password;
+// // Get references to the #generate element = button on html
+// var generateBtn = document.querySelector("#generate"); 
 
-}
+// // Write password to the #password input
+// function writePassword() {
+//   var password = generatePassword(); //Runs fn generatePassword
+//   var passwordText = document.querySelector("#password"); //pases passwordText.value to the text area in HTML
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+//   passwordText.value = password;
+
+// }
+
+// // Add event listener to generate button
+// generateBtn.addEventListener("click", writePassword);
