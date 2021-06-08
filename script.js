@@ -120,12 +120,38 @@ function generatePassword() {
   // console.log(passLength);
   //debugger;
   
-  debugger;
+  
   //console.log(lenghtCheck());
   //lenghtCheck();
   // return password; //Returns value to the writePassword fn for var password
+  
+
+
+
+  var randomPick = function() {
+    debugger; 
+    for (var x = 0; x < genPassword.passLength; x++) {
+     
+      if (genPassword.passLowerCase) {
+        var index = randomNumber(0, 26);
+        lowerCaseArray[index]; 
+
+
+        }
+      }
+      
+    };    
 
   
+  var randomNumber = function(min, max) {
+    var value = Math.floor(Math.random() * (max - min) + min);
+  
+    return value;
+  };
+
+
+
+
    if (lenghtCheck()) {
        lowerCaseCheck();
        upperCaseCheck();
@@ -134,33 +160,30 @@ function generatePassword() {
        if (!genPassword.passLowerCase && !genPassword.passUpperCase && !genPassword.passNumber && !genPassword.passSpecialChar) {
         window.alert("Error! At least one of the options needs to be selected. Please try again.");
         generatePassword();
-        
-       }
+        } else {
+          randomPick();
+        }
    } else if (!cancelSelected) {  
     window.alert("Operation has been cancelled. Come again!");
     return "Operation Cancelled. 🙁 ";
      }
-
-     //NEED TO FIX IF ALL SELECTIONS ARE NO
 }
 
-//Arrays or objects? for each of the selections
 
 
 
-//Loops to select and display random items from selected options
 
+var lowerCaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var upperCaseArray = lowerCaseArray.toUpperCase;
 
-
-//Object for password's parameters
+//Object for password's parameters Defaulted
 var genPassword = {
-  passLenght: 8,
+  passLength: 8,
   passLowerCase: true,
   passUpperCase: true,
   passNumber: true,
   passSpecialChar: true
 };
-
 
 // generatePassword(genPassword);
 
