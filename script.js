@@ -126,7 +126,11 @@ function generatePassword() {
   // return password; //Returns value to the writePassword fn for var password
   
 
-
+  var randomNumber = function(min, max) {
+    var value = Math.floor(Math.random() * (max - min) + min);
+  
+    return value;
+  };
 
   var randomPick = function() {
     debugger; 
@@ -134,22 +138,21 @@ function generatePassword() {
      
       if (genPassword.passLowerCase) {
         var index = randomNumber(0, 26);
-        lowerCaseArray[index]; 
-
+        selection[x] = lowerCaseArray[index]; 
+        x++;
+        console.log(selection);
+        if (genPassword.passUpperCase) {
+          index = randomNumber(0, 26);
+          selection[x] = upperCaseArray[index];
+          console.log(selection);
+        }
+console.log(selection.join(""));
 
         }
       }
       
     };    
-
   
-  var randomNumber = function(min, max) {
-    var value = Math.floor(Math.random() * (max - min) + min);
-  
-    return value;
-  };
-
-
 
 
    if (lenghtCheck()) {
@@ -172,9 +175,9 @@ function generatePassword() {
 
 
 
-
+var selection = [];
 var lowerCaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var upperCaseArray = lowerCaseArray.toUpperCase;
+var upperCaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 //Object for password's parameters Defaulted
 var genPassword = {
