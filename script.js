@@ -11,8 +11,6 @@ function generatePassword() {
 }
 
 //Input for length
-
-
 //Check to see input is integer and between the allowed values
 var lenghtCheck = function(passLength) {
   debugger;
@@ -54,12 +52,74 @@ lenghtCheck();
 
 
 //Input for lower case
+var lowerCaseCheck = function(passLowerCase) {
+  debugger;
+  //Prompts user for lenght and converts to Int
+  var askLowerCase = confirm("Select -OK- if you want lower-case letters included in your password. Otherwise click cancel.");
+  var passLowerCase = askLowerCase;
+    //if they cancel they will exit the fn
+    if (passLowerCase === true) {
+       console.log("pass");
+        window.alert("Great, we'll create a password with lower-case characters.");
+   
+    } else {
+       window.alert("Ok, no lower-case characters will be added.");
+     }
+}
+lowerCaseCheck();
 
 //Input for upper case
 
+var upperCaseCheck = function(passUpperCase) {
+  debugger;
+  //Prompts user for lenght and converts to Int
+  var askUpperCase = confirm("Select -OK- if you want lower-case letters included in your password. Otherwise click cancel.");
+  var passUpperCase = askUpperCase;
+    //if they cancel they will exit the fn
+    if (passUpperCase === true) {
+       console.log("pass");
+        window.alert("Great, we'll create a password with upper-case characters.");
+   
+    } else {
+       window.alert("Ok, no upper-case characters will be added.");
+     }
+}
+upperCaseCheck();
+
 //Input for number
+var numberCheck = function(passNumber) {
+  debugger;
+  //Prompts user for lenght and converts to Int
+  var askNumber = confirm("Select -OK- if you want numbers included in your password. Otherwise click cancel.");
+  var passNumber = askNumber;
+    //if they cancel they will exit the fn
+    if (passNumber === true) {
+       console.log("pass");
+        window.alert("Great, we'll create a password with number characters.");
+   
+    } else {
+       window.alert("Ok, no number characters will be added.");
+     }
+}
+numberCheck();
 
 //Input for special characters
+//Input for number
+var specialCheck = function(passSpecial) {
+  debugger;
+  //Prompts user for lenght and converts to Int
+  var askSpecial = confirm("Select -OK- if you want special characters included in your password. Otherwise click cancel.");
+  var passSpecial = askSpecial;
+    //if they cancel they will exit the fn
+    if (passSpecial === true) {
+       console.log("pass");
+        window.alert("Great, we'll create a password with special characters.");
+   
+    } else {
+       window.alert("Ok, no special characters will be added.");
+     }
+}
+specialCheck();
 
 //Arrays or objects? for each of the selections
 
