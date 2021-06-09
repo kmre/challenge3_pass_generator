@@ -20,10 +20,11 @@ var lenghtCheck = function() {
               window.alert("The previous input was invalid. Please enter the correct parameters.");
               lenghtCheck();
             } else {
-              //if input is Int and meets the lenght criteria user is alerted and should ask for the next input
+                //if input is Int and meets the lenght criteria user is alerted and should ask for the next input
                 window.alert("Great, 😊 we'll create a password with " + passLength + " characters.");
-               lengthOk = true;
-                return lengthOk;
+                lengthOk = true;
+                genPassword.passLength = passLength;
+                return genPassword.passLength;
               }
         } else {
         //if they enter a string they will be told to enter correct value
@@ -76,7 +77,6 @@ var upperCaseCheck = function() {
      }
 }
 
-
 //Input for number
 var numberCheck = function() {
   //debugger;
@@ -116,16 +116,7 @@ var specialCheck = function() {
 }
 
 function generatePassword() {
-  // var password = "test4";
-  // console.log(passLength);
-  //debugger;
   
-  
-  //console.log(lenghtCheck());
-  //lenghtCheck();
-  // return password; //Returns value to the writePassword fn for var password
-  
-
   var randomNumber = function(min, max) {
     var value = Math.floor(Math.random() * (max - min) + min);
   
@@ -133,28 +124,45 @@ function generatePassword() {
   };
 
   var randomPick = function() {
-    debugger; 
-    for (var x = 0; x < genPassword.passLength; x++) {
+    var y = 0;
+    var pl = genPassword.passLength;
+    var x = 0;
+    for (x; x < pl && y < pl; x++) {
      
-      if (genPassword.passLowerCase) {
-        var index = randomNumber(0, 26);
-        selection[x] = lowerCaseArray[index]; 
-        x++;
-        console.log(selection);
-        if (genPassword.passUpperCase) {
-          index = randomNumber(0, 26);
-          selection[x] = upperCaseArray[index];
-          console.log(selection);
-        }
-console.log(selection.join(""));
-
-        }
-      }
+      if (genPassword.passLowerCase && y < pl) {
+      var index = randomNumber(0, 26);
       
+      selection[y] = lowerCaseArray[index]; 
+      y++;
+      console.log(selection);
+    }
+      if (genPassword.passUpperCase && y < pl) {
+        index = randomNumber(0, 26);
+        selection[y] = upperCaseArray[index];
+        console.log(selection);
+        y++;
+      }
+      if (genPassword.passNumber && y < pl) {
+        index = randomNumber(0, 10);
+        selection[y] = numberArray[index];
+        console.log(selection);
+        y++;
+      }
+      if (genPassword.passSpecialChar && y < pl) {
+        index = randomNumber(0, 13);
+        selection[y] = specialArray[index];
+        console.log(selection);
+        y++;
+      }
+
+      console.log(selection.join(""));
+      var password = selection.join("");  
+      }
+      //debugger;
+      console.log("pass: " + password);
+      return password;
     };    
   
-
-
    if (lenghtCheck()) {
        lowerCaseCheck();
        upperCaseCheck();
@@ -164,20 +172,23 @@ console.log(selection.join(""));
         window.alert("Error! At least one of the options needs to be selected. Please try again.");
         generatePassword();
         } else {
-          randomPick();
+          password = randomPick();
         }
    } else if (!cancelSelected) {  
     window.alert("Operation has been cancelled. Come again!");
     return "Operation Cancelled. 🙁 ";
      }
+
+  //debugger;
+  console.log("pass2: " + password);
+  return password;
 }
-
-
-
 
 var selection = [];
 var lowerCaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperCaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numberArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; 
+var specialArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "+"];
 
 //Object for password's parameters Defaulted
 var genPassword = {
@@ -188,10 +199,6 @@ var genPassword = {
   passSpecialChar: true
 };
 
-// generatePassword(genPassword);
-
-
-// ///</Test>
 // //////////////////////////////////////////////////////////////////
 // /////////////////////Given Code///////////////////////////////////
 // ////////////////////////////////////////////////////////////////
