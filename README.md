@@ -18,23 +18,23 @@ The application must create a randomly generated password that meets certein cri
 
 Things added:
 
-    ~~1. Added flex-boxes/containers to allow for the content to expand and contract evenly.
-    2. Added links that point to external sites and one that takes you to a PDF.
-    3. Added CSS variables to style the HTML.
-    4. Used media queries to allow for the content to change and adjust based on the size of the screen.~~
+    1. Added script to determine user selections for characters desired in the password.
+    2. If initial input is not a number between 8 - 128 it will prompt the user to enter correct value.
+    3. The cancel button on the prompt window will exit the applications.
+    4. Used arrays and random # generator to select from the choices made by the user.
 
 
-~~Link to deployed app:
-    [HTTPS](https://kmre.github.io/challenge2_portfolio/)~~
+Link to deployed app:
+    [HTTPS](https://kmre.github.io/challenge3_pass_generator/)
 
-~~Link to repository:
-    [HTTPS](https://github.com/kmre/challenge2_portfolio.git)~~
+Link to repository:
+    [HTTPS](https://github.com/kmre/challenge3_pass_generator.git)
 
-    ~~[SSH](git@github.com:kmre/challenge2_portfolio.git)~~
+    [SSH](git@github.com:kmre/challenge3_pass_generator.git)
 
-    ~~[GitHub CLI](gh repo clone kmre/challenge2_portfolio)~~
+    [GitHub CLI](gh repo clone kmre/challenge3_pass_generator)
     
 Screenshot:
-    ~~![WebPage Screenshot](./assets/images/screencapture-file-C-Users-karla-Desktop-coding-class-Challanges-challenge-2-index-html-2021-06-04-23_39_41.png?raw=true "Screenshot")~~
+    ![WebPage Screenshot](./assets/images/screencapture.png?raw=true "Screenshot")
 
 
