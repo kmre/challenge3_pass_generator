@@ -56,7 +56,7 @@ var lowerCaseCheck = function() {
 var upperCaseCheck = function() {
   //debugger;
   //Prompts user uppercase characters
-  var askUpperCase = confirm("Select -OK- if you want lower-case letters included in your password. Otherwise click cancel.");
+  var askUpperCase = confirm("Select -OK- if you want upper-case letters included in your password. Otherwise click cancel.");
   var passUpperCase = askUpperCase;
     //if they cancel they jump to the next fn
     if (passUpperCase === true) {
@@ -153,6 +153,9 @@ function generatePassword() {
       console.log(selection.join(""));
       var password = selection.join("");  
       }
+      //reset arrays
+      selection = [];
+
       //debugger;
       //return password to the generatePassword()
       console.log("pass: " + password);
@@ -210,11 +213,11 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(); //Runs fn generatePassword
-  var passwordText = document.querySelector("#password"); //pases passwordText.value to the text area in HTML
-
-  passwordText.value = password;
-
+      var password = 0; //reset password
+      password = generatePassword(); //Runs fn generatePassword
+      var passwordText = document.querySelector("#password"); //pases passwordText.value to the text area in HTML
+      debugger;
+      passwordText.value = password;  
 }
 
 // Add event listener to generate button
