@@ -1,4 +1,5 @@
 // Assignment code here
+var lengthCheckCancel;
 
 var lenghtCheck = function() {
   //debugger;
@@ -16,9 +17,11 @@ var lenghtCheck = function() {
             } else {
                 //if input is Int and meets the lenght criteria user is alerted and should ask for the next input
                 window.alert("Great, 😊 we'll create a password with " + passLength + " characters.");
-                lengthOk = true;
                 genPassword.passLength = passLength;
-                return genPassword.passLength;
+                passLength2 = genPassword.passLength;
+                console.log(passLength2);
+                lengthCheckCancel = false;
+                return true;
               }
         } else {
         //if they enter a string they will be told to enter correct value
@@ -28,7 +31,8 @@ var lenghtCheck = function() {
           } 
     } else {
         //window.alert("Operation has been cancelled. Come again!");
-        cancelSelected = false;
+        cancelSelected = true;
+        lengthCheckCancel = true;
         return cancelSelected;
       }
 }
@@ -109,61 +113,96 @@ var specialCheck = function() {
      }
 }
 
-function generatePassword() {
-  //generate random number for the index selection in the arrays
-  var randomNumber = function(min, max) {
-    var value = Math.floor(Math.random() * (max - min) + min);
-    return value;
-  };
-  //function to put the password array together based on the inputs and random generated indexes
-  var randomPick = function() {
-    var y = 0;
-    var pl = genPassword.passLength;
-    var x = 0;
-    //the x++ will add once all the options have been evaluated, 
-    //but in the event that not all of them were selected the y++ would prevent the
-    //code from going over the length selected.
-    for (x; x < pl && y < pl; x++) {
-      //if lower case selected it will run this if once and add y++
-      if (genPassword.passLowerCase && y < pl) {
-      var index = randomNumber(0, 26);
-      selection[y] = lowerCaseArray[index]; 
-      y++;
-      console.log(selection);
-    } //if uppper case selected it will run this if once and add y++
-      if (genPassword.passUpperCase && y < pl) {
-        index = randomNumber(0, 26);
-        selection[y] = upperCaseArray[index];
-        console.log(selection);
-        y++;
-      }//if numbers selected it will run this if once and add y++
-      if (genPassword.passNumber && y < pl) {
-        index = randomNumber(0, 10);
-        selection[y] = numberArray[index];
-        console.log(selection);
-        y++;
-      }//if special characters selected it will run this if once and add y++
-      if (genPassword.passSpecialChar && y < pl) {
-        index = randomNumber(0, 13);
-        selection[y] = specialArray[index];
-        console.log(selection);
-        y++;
-      }
-      //join the array as a string
-      console.log(selection.join(""));
-      var password = selection.join("");  
-      }
-      //reset arrays
-      selection = [];
+//Took fn out of generatePassword()
+//Generates the random value for the index in randomPick()
+function randomNumber(min, max) {
+  var value = Math.floor(Math.random() * (max - min) + min);
+  return value;
+};
 
-      //debugger;
-      //return password to the generatePassword()
-      console.log("pass: " + password);
-      return password;
-    };    
+//Index generated in randomNumber() gets used to generate the random array for the password
+function randomPick() {
+  //reset array
+  var array = [];
+
+    makeString();
+    debugger;
+
+    //randomize random array
+    array = selection;
+    
+    var currentIndex = array.length,  randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    //join the array as a string
+    console.log(array.join(""));
+    var password = array.join("");  
+    //reset arrays
+
+    //debugger;
+    //return password to the generatePassword()
+    console.log("pass: " + password);
+    return password;
+  };    
+
+function makeString() {
+  var y = 0;
+  var pl = genPassword.passLength;
+  var x = 0;
+  debugger;
+  selection = [];
+  //the x++ will add once all the options have been evaluated, 
+  //but in the event that not all of them were selected the y++ would prevent the
+  //code from going over the length selected.
+  for (x; x < pl && y < pl; x++) {
+    //reset selection array
+    //if lower case selected it will run this if once and add y++
+    if (genPassword.passLowerCase && y < pl) {
+    var index = randomNumber(0, 26);
+    selection[y] = lowerCaseArray[index]; 
+    y++;
+    console.log(selection);
+  } //if uppper case selected it will run this if once and add y++
+    if (genPassword.passUpperCase && y < pl) {
+      index = randomNumber(0, 26);
+      selection[y] = upperCaseArray[index];
+      console.log(selection);
+      y++;
+    }//if numbers selected it will run this if once and add y++
+    if (genPassword.passNumber && y < pl) {
+      index = randomNumber(0, 10);
+      selection[y] = numberArray[index];
+      console.log(selection);
+      y++;
+    }//if special characters selected it will run this if once and add y++
+    if (genPassword.passSpecialChar && y < pl) {
+      index = randomNumber(0, 13);
+      selection[y] = specialArray[index];
+      console.log(selection);
+      y++;
+    }
+  }
+  console.log(selection);
+  return selection;
+}
+
+function generatePassword() {
+
   //where the code "starts" when the user clicks on the button and the generatePassword()
   //is initiated
-   if (lenghtCheck()) {
+  lenghtCheck();
+   if (!lengthCheckCancel) {
        lowerCaseCheck();
        upperCaseCheck();
        numberCheck();
@@ -175,14 +214,15 @@ function generatePassword() {
         } else {
           //after all inputs everything is good and takes you to were the password will be generated
           password = randomPick();
-        }
+        } 
+        //debugger;
     //if they select cancel when entering the length this will take them out
-   } else if (!cancelSelected) {  
+   } else if (cancelSelected) {  
     window.alert("Operation has been cancelled. Come again!");
     return "Operation Cancelled. 🙁 ";
      }
 
-  //debugger;
+ 
   console.log("pass2: " + password);
   //returns password for display
   return password;
@@ -216,7 +256,7 @@ function writePassword() {
       var password = 0; //reset password
       password = generatePassword(); //Runs fn generatePassword
       var passwordText = document.querySelector("#password"); //pases passwordText.value to the text area in HTML
-      debugger;
+      //debugger;
       passwordText.value = password;  
 }
 
